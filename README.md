@@ -80,87 +80,87 @@ web01 | SUCCESS => {
 }
 # Ansible Components
 
-### Inventory
+## Inventory
 
 Defines the list of managed hosts and groups that Ansible will connect to and manage.
 
-### Playbook
+## Playbook
 
 A YAML file containing one or more plays that define the tasks Ansible executes on managed hosts.
 
-### Roles
+## Roles
 
 A reusable and organized collection of tasks, handlers, templates, variables, and files used to automate a specific function.
 
-### Tasks
+## Tasks
 
 Individual units of work executed by Ansible, such as installing packages, copying files, or starting services.
 
-### Handlers
+## Handlers
 
 Special tasks that run only when notified by another task, typically used to restart or reload services after configuration changes.
 
-### Modules
+## Modules
 
 Built-in or custom programs that perform specific actions on managed hosts, such as package installation, file management, or service control.
 
-### Variables (`vars`)
+## Variables (`vars`)
 
 Store reusable values that make playbooks flexible and easier to maintain.
 
-### Group Variables (`group_vars`)
+## Group Variables (`group_vars`)
 
 Variables that are automatically applied to all hosts within a specific inventory group.
 
-### Host Variables (`host_vars`)
+## Host Variables (`host_vars`)
 
 Variables that are applied only to a specific host in the inventory.
 
-### Templates
+## Templates
 
 Jinja2 template files used to generate dynamic configuration files by replacing variables during playbook execution.
 
-### Files
+## Files
 
 Contains static files such as scripts, certificates, or configuration files that can be copied to managed hosts.
 
-### Defaults
+## Defaults
 
 Stores default variable values for a role. These values have the lowest precedence and can be overridden easily.
 
-### Meta
+## Meta
 
 Contains role metadata such as dependencies, supported platforms, and author information.
 
-### Handlers
+## Handlers
 
 Contains all handler definitions that are triggered only when notified by tasks.
 
-### Facts
+## Facts
 
 System information automatically gathered by Ansible about managed hosts, including OS, IP address, memory, CPU, hostname, and more.
 
-### Tags
+## Tags
 
 Allow you to execute or skip specific tasks within a playbook without running the entire playbook.
 
-### Templates (`.j2`)
+## Templates (`.j2`)
 
 Dynamic configuration files that use Jinja2 syntax to replace variables during deployment.
 
-### Collections
+## Collections
 
 A distribution format that packages Ansible modules, plugins, roles, and documentation together.
 
-### Ansible Galaxy
+## Ansible Galaxy
 
 The official repository for downloading and sharing Ansible roles and collections.
 
-### Vault
+## Vault
 
 Encrypts sensitive information such as passwords, API keys, and secrets to keep them secure.
 
-### Handlers vs Tasks
+## Handlers vs Tasks
 
 Tasks run every time the playbook executes, whereas handlers run only when they are notified by a task that has made a change.
 
