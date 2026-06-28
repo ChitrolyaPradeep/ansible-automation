@@ -1,0 +1,9 @@
+- name: python install on managed server
+  hosts: webserver
+  become: yes
+
+  tasks:
+    - name: install the pgk all server
+      package:
+        name: python3.14
+        state: present

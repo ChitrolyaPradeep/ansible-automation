@@ -1,0 +1,22 @@
+---
+- name: Manage service on ubuntu
+  hosts: webserver
+  become: yes
+  tasks:
+    - name: ensure cron service is installed 
+      package:
+        name: cron
+        state: present
+    - name: start and enable cron
+      service:
+        name: cron
+        state: started
+        enabled: true
+    - name: check cron service status
+      command: systemctl status cron 
+      changed_when: false
+      register: cron_status
+
+    - name: Print service status
+      debug:
+        msg: "{{ cron_status.stdout_lines[:5] }}"

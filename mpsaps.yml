@@ -1,0 +1,14 @@
+---
+- name: test for group variable
+  hosts: all
+
+  tasks:
+    - name: show environment
+      debug:
+        msg: "{{ company }}"
+    - name: shoem name of canditate
+      debug:
+        msg: "name of canditate: {{ Name | default ('Not Defined') }}"
+    - name: show of position 
+      debug:
+        msg: "name of position canditate:  {{ position | default ('Not Defined') }}"

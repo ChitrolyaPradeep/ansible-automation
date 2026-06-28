@@ -1,0 +1,25 @@
+---
+- name: Capture and print command output
+  hosts: webserver
+  remote_user: ubuntu
+  tasks:
+    - name: Get hostname
+      command: hostname
+      changed_when: false
+      register: hostname_result
+    - name: Print full registerd variable
+      debug:
+        var: hostname_result
+    - name: Print just stdout
+      debug:
+        msg: "Return code was: {{ hostname_result.stdout }}"
+    - name: Print just stldout
+      debug:
+        msg: "Return code was: {{ hostname_result.rc }}"
+    - name: Get disk uses 
+      command: df -h 
+      register: disk_usage
+    - name: Print disk usage lines
+      debug:
+        msg: "{{ disk_usage.stdout_lines }}"
+

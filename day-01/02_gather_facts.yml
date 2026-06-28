@@ -1,0 +1,20 @@
+---
+- name: explore ansible facts
+  hosts: webserver
+  tasks:
+    - name: print the os distribution
+      debug:
+        msg:  " this server runs {{ ansible_facts['distribution'] }}  {{ ansible_facts['distribution_version'] }}"
+    - name : print the Ip address
+      debug:
+        msg: "IP address is {{ ansible_facts['default_ipv4'] ['address'] }}"
+    - name: Print the total memory
+      debug:
+        msg: "Total RAM: {{ ansible_facts['memtotal_mb'] }} MB"
+    - name: Print all CPU 
+      debug: 
+        msg: "CPU: {{ ansible_facts['processor_cores'] }}"
+    - name: Print All facts (careful - lots of output)
+      debug:
+        var: ansible_facts
+      tags: all_facts 

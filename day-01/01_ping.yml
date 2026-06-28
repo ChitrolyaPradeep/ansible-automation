@@ -1,0 +1,10 @@
+---
+-  name: test connectivity to all server
+   hosts: webserver
+   
+   tasks:
+     - name: ping all server
+       ping:
+     - name: print a success message
+       debug:
+         msg: "sucessfully connected to {{ inventory_hostname }}"    

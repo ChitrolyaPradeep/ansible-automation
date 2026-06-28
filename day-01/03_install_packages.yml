@@ -1,0 +1,28 @@
+---
+- name: Install common utility package
+  hosts: webserver
+  become: yes
+
+  tasks:
+    - name: install tree 
+      package:
+        name: tree
+        state: present
+    - name: Install htop
+      package: 
+        name: htop
+        state: present
+    - name: Install vim
+      package:
+        name: vim
+        state: present
+    - name: verify tree is installed 
+      command: tree --version
+      changed_when: false
+      register: tree_version
+
+    - name: Show tree version 
+      debug: 
+        msg: "{{ tree_version.stdout }}"
+      
+

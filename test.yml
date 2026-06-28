@@ -1,0 +1,22 @@
+---
+- name: how to used host_vars
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: name of canditate
+      debug:
+        msg: "{{ Name }}"
+      when: Name is defined  
+    - name:  name of class details
+      debug:
+        msg: "{{ Class }}"
+      when: Class is defined
+    - name: name of village
+      debug:
+        msg: "{{ Village }}"
+      when: Village is defined
+    - name: where from you
+      debug:
+        msg: "{{ From }}"
+      when: From is defined

@@ -1,0 +1,29 @@
+---
+- name: Run tasks based on OS type
+  hosts: all
+
+  tasks: 
+    - name: Print os family
+      debug: 
+        msg: ansible_facts["os_family"]
+    - name: this is runs on debain/Ubuntu
+      debug:
+        msg: "This is a debian-based system (ubuntu)"
+      when: ansible_facts["os_family"] == "Debian"
+    - name: this is run on RedHat
+      debug:
+        msg: "this is a RedHat-based system"
+      when: ansible_facts["os_family"] == "RedHat"
+    - name: update cache on only ubuntu
+      apt:
+        update_cache: true
+      when: ansible_facts["os_family"] == "Debian"
+      become: yes
+    - name: Print message based on memory
+      debug: 
+        msg: >
+             {% if ansible_memtotal_mb > 2048 %}
+             this is server has plenty of RAM ({{ ansible_memtotal_mb }} MB)
+             {% else %}
+             This is server has limited RAM ({{ ansible_memtotal_mb }} MB)
+             {% endif %}

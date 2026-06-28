@@ -1,0 +1,33 @@
+---
+- name: Working with inline variable
+  hosts: webserver
+  become: yes
+  gather_facts: false
+
+  vars:
+    name_company: "mpsaps"
+    name_dept: "mpsaps_bhopal"
+    server_count: 4
+
+
+  tasks:
+    - name: print name
+      debug:
+        msg: "{{ name_company }}"
+    - name: print name of company and dep
+      debug:
+        msg: "Welcome to {{ name_company }}! we have {{ name_dept }}"
+    - name: use variable in a task
+      debug:
+        msg: "Running on host: {{ inventory_hostname }}"
+- name: Using vars_files
+  hosts: webserver
+  become: yes
+  gather_facts: false
+  vars_files:
+    - mpsaps/pkg.yml
+
+  tasks:
+    - name: Print package from external files 
+      debug:
+        msg: "Packages to install: {{ pkg_name }}"
