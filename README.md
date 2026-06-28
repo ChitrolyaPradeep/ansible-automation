@@ -248,10 +248,6 @@ ansible all -m copy -a "src=test.txt dest=/tmp/test.txt"
 
 ```bash
 ansible all -m file -a "path=/tmp/test.txt state=absent"
-```
-
----
-
 # Variables
 
 ## group_vars
