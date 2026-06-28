@@ -33,51 +33,6 @@ Before using this project, ensure the following are installed:
 * SSH access to Linux servers
 * WinRM configured for Windows servers (if applicable)
 
----
-
-# Installation
-
-## Ubuntu
-
-```bash
-sudo apt update
-sudo apt install ansible -y
-```
-
-Verify installation
-
-```bash
-ansible --version
-```
-
----
-
-# Inventory Example
-
-```ini
-[webservers]
-web01 ansible_host=192.168.1.10
-web02 ansible_host=192.168.1.11
-
-[databases]
-db01 ansible_host=192.168.1.20
-```
-
----
-
-# Verify Connectivity
-
-```bash
-ansible all -m ping
-```
-
-Expected Output
-
-```text
-web01 | SUCCESS => {
-    "changed": false,
-    "ping": "pong"
-}
 # Ansible Components
 
 ## Inventory
@@ -163,6 +118,53 @@ Encrypts sensitive information such as passwords, API keys, and secrets to keep 
 ## Handlers vs Tasks
 
 Tasks run every time the playbook executes, whereas handlers run only when they are notified by a task that has made a change.
+
+
+---
+
+# Installation
+
+## Ubuntu
+
+```bash
+sudo apt update
+sudo apt install ansible -y
+```
+
+Verify installation
+
+```bash
+ansible --version
+```
+
+---
+
+# Inventory Example
+
+```ini
+[webservers]
+web01 ansible_host=192.168.1.10
+web02 ansible_host=192.168.1.11
+
+[databases]
+db01 ansible_host=192.168.1.20
+```
+
+---
+
+# Verify Connectivity
+
+```bash
+ansible all -m ping
+```
+
+Expected Output
+
+```text
+web01 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
 
 # Running Playbooks
 
