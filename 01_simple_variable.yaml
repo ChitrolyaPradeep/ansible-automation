@@ -1,8 +1,9 @@
 ---
 - name: Working with inline variable
-  hosts: webserver
+  hosts: all
   become: yes
   gather_facts: false
+  serial: 3
 
   vars:
     name_company: "mpsaps"
@@ -21,7 +22,7 @@
       debug:
         msg: "Running on host: {{ inventory_hostname }}"
 - name: Using vars_files
-  hosts: webserver
+  hosts: all
   become: yes
   gather_facts: false
   vars_files:

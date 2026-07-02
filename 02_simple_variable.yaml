@@ -1,7 +1,9 @@
 ---
 - name: Capture and print command output
-  hosts: webserver
-  remote_user: ubuntu
+  hosts: all
+  become: yes
+  serial: 1
+
   tasks:
     - name: Get hostname
       command: hostname

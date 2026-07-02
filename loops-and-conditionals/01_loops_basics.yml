@@ -1,0 +1,34 @@
+---
+- name: Install package and create directories using loops
+  hosts: all
+  become: yes
+  vars:
+    package_install:
+      - tree
+      - wget
+      - unzip 
+
+
+  tasks:
+    - name: install the multiple pkg on target server
+      package:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ package_install }}"
+    - name: create the multiple directroy 
+      file:
+        path: "/home/{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - logs
+        - config
+        - data
+        - backups
+    - name: verify directory create in target host
+      shell: cd /home/ && ls
+      register: pradeep
+
+    - name: show directory output
+      debug:
+        msg: "{{ pradeep.stdout_lines }}"

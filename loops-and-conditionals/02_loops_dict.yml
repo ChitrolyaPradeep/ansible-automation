@@ -1,0 +1,40 @@
+---
+- name: Create config file using dictionary loops
+  hosts: all
+  become: yes
+  vars:
+    mpsaps_config:
+      - name: app.conf
+        content: "app_port=8080"
+        dest: /tmp/ansible-lab
+      - name: df.conf
+        content: "db_host=localhost"
+        dest: /tmp/ansible-lab
+      - name: log.conf
+        content: "log_level=info"
+        dest: /tmp/ansible-lab
+  tasks:
+    - name: Create config diretory
+      file:
+        path: /tmp/ansible-lab
+        state: directory
+    - name: create the config file from 
+      copy:
+        content: "{{ item.content }}"
+        dest:  "{{ item.dest }}/{{ item.name }}"
+      loop: "{{ mpsaps_config }}"
+      loop_control:
+        label: "{{ item.name }}"
+    - name: read back the file 
+      command: "cat {{ item.dest }}/{{ item.name }}"
+      register: file_contents
+      loop: "{{ mpsaps_config }}"
+      loop_control:
+        label: "{{ item.name }}"
+    - name: Print file contents
+      debug:
+        msg: "{{ item.item.name }}: {{ item.stdout }}"
+      loop: "{{ file_contents.results }}"
+      loop_control:
+        label: "{{ item.item.name }}"
+
